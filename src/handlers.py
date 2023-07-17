@@ -35,7 +35,8 @@ async def get_todo_detail_api(id: int, database: databases.Database = Depends(ge
 
     todo = await crud.get_todo(id, fields, database)
     if not todo:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Item Not Found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Item Not Found")
 
     return todo
 
@@ -43,7 +44,8 @@ async def get_todo_detail_api(id: int, database: databases.Database = Depends(ge
 @router.delete('/todos/{id}', status_code=status.HTTP_204_NO_CONTENT, tags=["ToDo"])
 async def delete_todo_api(id: int, database: databases.Database = Depends(get_database)):
     if not await crud.is_todo_exist(id, database):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Item Not Found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Item Not Found")
 
     await crud.delete_todo(id, database)
     return None

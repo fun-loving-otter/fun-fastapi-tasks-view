@@ -15,7 +15,6 @@ def test_create_todo(client: TestClient):
     assert dateutil.parser.isoparse(r.json()["updated_at"]) < datetime.now()
 
 
-
 def test_create_todo_invalid_payload(client: TestClient):
     data = {"title": "", "description": "description test todo"}
     r = client.post("/api/v1/todos", json=data)

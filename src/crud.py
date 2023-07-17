@@ -29,8 +29,8 @@ async def get_todo(
 ):
     return await db.fetch_one(
         select(fields if fields else TodoItemInDB.columns)
-            .where(TodoItemInDB.c.id == id)
-            .limit(1))
+        .where(TodoItemInDB.c.id == id)
+        .limit(1))
 
 
 async def select_todo(fields: List = [], db: Database = get_database()):
